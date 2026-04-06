@@ -1,8 +1,8 @@
 {
   "name": "docugen",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Document generation API using Express and Docxtemplater",
+  "main": "src/server.js",
   
   "scripts": {
     "dev": "nodemon src/server.js",
@@ -15,7 +15,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/rishadluthra/docugen/issues"
   },
