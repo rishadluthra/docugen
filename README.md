@@ -1,13 +1,13 @@
 # Document Generation API
 
-A generic Node.js + Express API for generating `.docx` files from Docxtemplater templates. The API is template-agnostic: clients send a template name plus a `data` object, and the service renders whatever placeholders and loops the template defines. Built on the standard Docxtemplater Node flow of loading a `.docx`, rendering tags from a data object, and exporting a buffer.[1][2]
+A generic Node.js + Express API for generating `.docx` files from Docxtemplater templates. The API is template-agnostic: clients send a template name plus a `data` object, and the service renders whatever placeholders and loops the template defines. Built on the standard Docxtemplater Node flow of loading a `.docx`, rendering tags from a data object, and exporting a buffer.
 
 ## Features
 
-- Generic `POST /generate-document` endpoint that accepts `{ template, data }` and passes `data` directly to Docxtemplater for rendering.[2]
+- Generic `POST /generate-document` endpoint that accepts `{ template, data }` and passes `data` directly to Docxtemplater for rendering.
 - `GET /templates` endpoint to list available `.docx` templates from the templates directory.
-- `GET /templates/:template/tags` endpoint to inspect a template and return a human-readable summary of scalar fields and loop fields using Docxtemplater's inspect capabilities.[3][4]
-- Docker support with `Dockerfile`, `.dockerignore`, and `compose.yaml`, following common Docker practices like excluding unnecessary files from the build context and using Compose for environment variables and local bind mounts.[5][6][7]
+- `GET /templates/:template/tags` endpoint to inspect a template and return a human-readable summary of scalar fields and loop fields using Docxtemplater's inspect capabilities.
+- Docker support with `Dockerfile`, `.dockerignore`, and `compose.yaml`, following common Docker practices like excluding unnecessary files from the build context and using Compose for environment variables and local bind mounts.
 
 ## Project Structure
 
@@ -40,7 +40,7 @@ doc-gen-service/
 
 - Node.js 20+
 - npm
-- Docker and Docker Compose plugin, if running the containerized version. Docker Compose uses `compose.yaml` in the project directory and supports environment files and bind mounts for local development.[8][7]
+- Docker and Docker Compose plugin, if running the containerized version. Docker Compose uses `compose.yaml` in the project directory and supports environment files and bind mounts for local development.
 
 ## Environment Variables
 
@@ -96,7 +96,7 @@ npm start
 
 ## Docker Setup
 
-The Docker version mounts `./templates` and `./output` into the container so templates and generated files remain on your machine instead of being baked into the container filesystem. Docker build guidance recommends minimizing build context and Compose supports `.env` files and bind mounts for this setup.[5][6][7]
+The Docker version mounts `./templates` and `./output` into the container so templates and generated files remain on your machine instead of being baked into the container filesystem. Docker build guidance recommends minimizing build context and Compose supports `.env` files and bind mounts for this setup.
 
 ### Build and run
 
@@ -110,7 +110,7 @@ docker compose up --build
 docker compose down
 ```
 
-`docker compose down` stops and removes the containers and networks created by Compose, while `docker compose down -v` also removes attached volumes.[9]
+`docker compose down` stops and removes the containers and networks created by Compose, while `docker compose down -v` also removes attached volumes.
 
 ## API Endpoints
 
@@ -144,7 +144,7 @@ curl http://localhost:8000/templates
 
 ### `GET /templates/:template/tags`
 
-Returns a readable summary of the template's scalar placeholders and repeating loop fields. Docxtemplater's inspect tooling exposes structured tag information that can be transformed into a field summary for payload building.[3][10][4]
+Returns a readable summary of the template's scalar placeholders and repeating loop fields. Docxtemplater's inspect tooling exposes structured tag information that can be transformed into a field summary for payload building.
 
 Example:
 
@@ -160,7 +160,7 @@ curl "http://localhost:8000/templates/master_service_agreement_template/tags?raw
 
 ### `POST /generate-document`
 
-Renders a `.docx` file from the specified template using the provided `data` object. Docxtemplater resolves placeholders and loops directly from the object passed into `render(...)`, so the JSON keys must match the template tag names exactly.[2][11]
+Renders a `.docx` file from the specified template using the provided `data` object. Docxtemplater resolves placeholders and loops directly from the object passed into `render(...)`, so the JSON keys must match the template tag names exactly.
 
 ## Request Format
 
@@ -182,7 +182,7 @@ Renders a `.docx` file from the specified template using the provided `data` obj
 
 - If the template contains `{client_name}`, send `data.client_name`.
 - If the template contains `{#line_items}{description}{/line_items}`, send `data.line_items` as an array of objects.
-- If a template contains multiple loops, each loop key must exist under `data` with the exact matching name.[2][11]
+- If a template contains multiple loops, each loop key must exist under `data` with the exact matching name.
 
 ## Sample Contract Request
 
@@ -332,11 +332,11 @@ Example `payload.json`:
 
 ## Authoring Templates
 
-Docxtemplater loops depend on the actual tag names and structure inside the Word document. For example, a loop written as `{#milestones}...{/milestones}` expects an array at `data.milestones`, and table loops must be authored correctly inside Word rows for repeated rows to render as intended.[11][3]
+Docxtemplater loops depend on the actual tag names and structure inside the Word document. For example, a loop written as `{#milestones}...{/milestones}` expects an array at `data.milestones`, and table loops must be authored correctly inside Word rows for repeated rows to render as intended.
 
 Practical rules:
 - Keep scalar placeholders simple, for example `{client_name}`.
-- Use arrays for loop blocks, for example `{#line_items}` ... `{/line_items}`.[11]
+- Use arrays for loop blocks, for example `{#line_items}` ... `{/line_items}`.
 - When using table rows, place loop tags in the row structure correctly so Docxtemplater can repeat the row.
 
 ## Troubleshooting
@@ -349,7 +349,7 @@ Make sure the `.docx` file exists in the configured templates directory and the 
 
 This usually means one of two things:
 - the JSON keys do not match the loop names in the template, or
-- the Word table loop tags were authored incorrectly.[11]
+- the Word table loop tags were authored incorrectly.
 
 ### `req.body` is undefined
 
