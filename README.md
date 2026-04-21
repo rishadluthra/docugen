@@ -207,9 +207,9 @@ Example `payload.json`:
     "client_legal_name": "Acme Growth Partners Ltd.",
     "client_jurisdiction": "Delaware",
     "client_address": "350 Fifth Avenue, 59th Floor, New York, NY 10118",
-    "provider_contact_name": "Rishad Luthra",
+    "provider_contact_name": "James Rich",
     "provider_contact_title": "Lead Software Consultant",
-    "provider_contact_email": "rishad@example.com",
+    "provider_contact_email": "James@example.com",
     "client_contact_name": "Melissa Grant",
     "client_contact_title": "Director of Operations",
     "client_contact_email": "melissa.grant@acmegrowth.com",
@@ -238,7 +238,7 @@ Example `payload.json`:
     "termination_notice_period": "30 days written notice",
     "governing_law": "Ontario, Canada",
     "dispute_venue": "Toronto, Ontario",
-    "provider_signatory_name": "Rishad Luthra",
+    "provider_signatory_name": "James Rich",
     "provider_signatory_title": "Lead Software Consultant",
     "provider_signature_date": "2026-04-12",
     "client_signatory_name": "Melissa Grant",
@@ -280,7 +280,7 @@ Example `payload.json`:
     ],
     "team_members": [
       {
-        "name": "Rishad Luthra",
+        "name": "James Rich",
         "role": "Lead Engineer",
         "allocation": "60%"
       },
