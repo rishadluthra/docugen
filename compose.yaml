@@ -1,0 +1,17 @@
+services:
+  doc-gen-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: doc-gen-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      PORT: 8000
+      NODE_ENV: production
+    volumes:
+      - ./templates:/app/templates
+      - ./output:/app/output
+    restart: unless-stopped
